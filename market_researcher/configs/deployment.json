@@ -2,7 +2,7 @@
   {
     "name": "deployment_1",
     "module": {
-      "name": "financial_market_researcher"
+      "name": "market_researcher"
     },
     "node": {
       "ip": "node.naptha.ai",
