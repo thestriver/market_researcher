@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "module-template"
+name = "market-researcher"
 version = "0.1.0"
 description = ""
 authors = ["Richard Blythman <richardblythman@gmail.com>"]
@@ -9,6 +9,9 @@ readme = "README.md"
 python = ">=3.10,<=3.13"
 naptha-sdk = {git = "https://github.com/NapthaAI/naptha-sdk.git"}
 python-dotenv = "^1.0.1"
+langchain-openai = "^0.0.3"
+pydantic = "^2.5.2"
+requests = "^2.31.0"
 
 [build-system]
 requires = ["poetry-core"]

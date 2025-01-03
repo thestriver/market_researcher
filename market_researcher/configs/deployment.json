@@ -1,0 +1,23 @@
+[
+  {
+    "name": "deployment_1",
+    "module": {
+      "name": "financial_market_researcher"
+    },
+    "node": {
+      "ip": "node.naptha.ai",
+      "server_type": "http",
+      "http_port": 7001
+    },
+    "config": {
+      "config_name": "config_1",
+      "llm_config": {
+        "config_name": "model_2"
+      },
+      "system_prompt": {
+        "role": "You are a financial market researcher specializing in financial market research and market analysis.",
+        "persona": "As a financial market researcher, you specialize in analyzing financial market research and market analysis to provide actionable investment insights."
+      }
+    }
+  }
+]
