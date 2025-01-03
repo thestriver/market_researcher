@@ -55,14 +55,14 @@ git push origin v0.1
 
 2. Create the Naptha agent:
 ```bash
-naptha agents market-researcher -p "description='A sophisticated market research analyst that provides detailed market analysis and news insights for stocks' parameters='{tool_name: str, tool_input_data: {ticker_symbols: List[str], max_news_sources: int, research_depth: str}}' module_url='https://github.com/YourUsername/market-researcher' module_version='v0.1'"
+naptha agents market_researcher -p "description='A sophisticated market research analyst that provides detailed market analysis and news insights for stocks' parameters='{tool_name: str, tool_input_data: {ticker_symbols: List[str], max_news_sources: int, research_depth: str}}' module_url='https://github.com/thestriver/market_researcher/' module_version='v0.2'"
 ```
 
 ## Usage
 
 Run the agent using the Naptha CLI:
 ```bash
-naptha run agent:market-researcher -p '{
+naptha run agent:market_researcher -p '{
     "tool_name": "analyze",
     "tool_input_data": {
         "ticker_symbols": ["AAPL"],

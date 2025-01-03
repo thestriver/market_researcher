@@ -8,5 +8,5 @@ class MarketResearchInput(BaseModel):
     research_depth: str = "brief"
 
 class InputSchema(BaseModel):
-    tool_name: str
+    tool_name: str = "analyze"
     tool_input_data: MarketResearchInput

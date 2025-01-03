@@ -13,6 +13,7 @@ load_dotenv()
 logger = get_logger(__name__)
 
 print("OpenAI Key loaded:", bool(os.getenv("OPENAI_API_KEY")))
+print("Serper API Key loaded:", bool(os.getenv("SERPER_API_KEY")))
 
 class MarketResearchAnalyst:
     def __init__(self, module_run):
@@ -113,7 +114,7 @@ if __name__ == "__main__":
         tool_input_data=MarketResearchInput(
             ticker_symbols=["AAPL"],
             max_news_sources=5,
-            research_depth="comprehensive"
+            research_depth="brief"
         )
     )
 
