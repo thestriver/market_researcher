@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 import os
 import requests
 from naptha_sdk.schemas import AgentRunInput
+from naptha_sdk.user import sign_consumer_id
 from naptha_sdk.utils import get_logger
-from pydantic import BaseModel
 from typing import List, Dict, Any
 from langchain_openai import ChatOpenAI
 from market_researcher.schemas import MarketResearchInput, InputSchema
@@ -85,8 +85,10 @@ class MarketResearchAnalyst:
             logger.error(f"Research failed: {str(e)}")
             raise
 
-def run(module_run, *args, **kwargs):
+def run(module_run: Dict, *args, **kwargs):
     """Main entry point for the market researcher"""
+    module_run = AgentRunInput(**module_run)
+    module_run.inputs = InputSchema(**module_run.inputs)
     researcher = MarketResearchAnalyst(module_run)
     
     if isinstance(module_run.inputs, dict):
@@ -109,20 +111,21 @@ if __name__ == "__main__":
         node_url=os.getenv("NODE_URL")
     ))
 
-    input_params = InputSchema(
-        tool_name="analyze",
-        tool_input_data=MarketResearchInput(
-            ticker_symbols=["AAPL"],
-            max_news_sources=5,
-            research_depth="brief"
-        )
-    )
+    input_params = {
+        "tool_name": "analyze",
+        "tool_input_data": {
+            "ticker_symbols": ["AAPL"],
+            "max_news_sources": 5,
+            "research_depth": "brief"
+        }
+    }
 
-    module_run = AgentRunInput(
-        inputs=input_params,
-        deployment=deployment,
-        consumer_id=naptha.user.id,
-    )
+    module_run = {
+        "inputs": input_params,
+        "deployment": deployment,
+        "consumer_id": naptha.user.id,
+        "signature": sign_consumer_id(naptha.user.id, os.getenv("PRIVATE_KEY"))
+    }
 
     response = run(module_run)
     print("\nMarket Research Results:")
